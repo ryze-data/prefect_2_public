@@ -10,8 +10,6 @@ from prefect import flow, task
 from prefect.tasks import task_input_hash
 from datetime import timedelta
 
-import time
-
 @task(retries=2)
 def fetch_weather(lat: float, lon: float):
     base_url = "https://api.open-meteo.com/v1/forecast/"
