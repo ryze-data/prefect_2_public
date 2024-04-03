@@ -1,3 +1,6 @@
+'''
+This Prefect Flow pattern requires deployments to concurrent-deployment-1 and concurrent-deployment-2 to have already been created
+'''
 from prefect import flow, task
 from prefect.deployments import run_deployment
 

@@ -20,9 +20,9 @@ def concurrent_flow_2(name="world"):
     message_3 = print_hello(name="Task 3 concurrent", wait_for=[message, message_2])
 
 if __name__ == "__main__":
-    hello_world.from_source(
+    concurrent_flow_2.from_source(
         "https://github.com/ryze-data/prefect_2_public.git",
-        entrypoint="flows/patterns/serving_flows/single_deployment/main.py:hello_world",
+        entrypoint="flows/patterns/serving_flows/single_deployment/main.py:concurrent_flow_2",
     ).serve(
         name="concurrent-deployment-2",
         # cron="0/5 * * * *",

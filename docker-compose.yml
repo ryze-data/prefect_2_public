@@ -38,7 +38,7 @@ services:
     volumes:
       - prefect_config:/root/.prefect
       - prefect_development:/app/prefect_development
-      - ./flows:/app/flows
+      - .:/app/prefect_2_public
     environment:
       PREFECT_SERVER_API_HOST: 0.0.0.0
       PREFECT_SERVER_DATABASE_CONNECTION_URL: ${DB_CONNECTION_URL}
