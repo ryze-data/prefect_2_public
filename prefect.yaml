@@ -25,7 +25,7 @@ deployments:
   version: 0.1.0
   tags: ["sandbox"]
   description: "Sample running parallel flows"
-  schedule: {"name": "world"}
+  schedule: {}
   entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/main.py:flow_of_deployments
   parameters: {}
   work_pool:
