@@ -13,8 +13,8 @@ def flow_of_deployments():
         parameters={"sleep": 2,"name": "world"},
     )
     deployment_run_2 = run_deployment_task.submit(
-        flow_name="concurrent_flow_2",
-        deployment_name="concurrent-deployment-2",
+        flow_name="concurrent-flow-2",
+        deployment_name="concurrent_deployment_2",
         parameters={"name": "world"},
     )
     downstream_task(wait_for=[deployment_run_1, deployment_run_2])
