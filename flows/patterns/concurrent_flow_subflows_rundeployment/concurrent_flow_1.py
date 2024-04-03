@@ -25,20 +25,5 @@ def fast_flow(name:str ="world"):
     message_2 = print_hello.submit(name="Task 3 concurrent")
     return
 
-
 if __name__ == "__main__":
-    concurrent_flow_1.from_source(
-        "https://github.com/ryze-data/prefect_2_public.git",
-        entrypoint="flows/patterns/serving_flows/single_deployment/main_2.py:slow_flow",
-    ).serve(
-        name="concurrent-deployment-1",
-        # cron="0/5 * * * *",
-        tags=["testing", "tutorial","deployment2"],
-        description="This is an example deployment flow of a parrallel task execution flow.",
-        version="tutorial/deployments",
-        parameters={"sleep": 5,"name": "world"}
-    ).deploy(
-        name="no-image-deployment",
-        work_pool_name="wp-local-subprocess",
-        build=True
-    )
+    concurrent_flow_1(sleep = 5, name="world")
