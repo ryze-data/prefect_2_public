@@ -10,7 +10,7 @@ def print_hello(name):
     return msg
 
 @flow
-def slow_flow(sleep: int = 60):
+def slow_flow(sleep: int = 60, name: str ="world"):
     "Sleepy flow - sleeps the provided amount of time (in seconds)."
     time.sleep(sleep)
     message = print_hello.submit(name="Task 1 concurrent")
@@ -27,14 +27,14 @@ def fast_flow():
 if __name__ == "__main__":
     slow_flow.from_source(
         "https://github.com/ryze-data/prefect_2_public.git",
-        entrypoint="flows/patterns/serving_flows/single_deployment/main_2.py:hello_world",
+        entrypoint="flows/patterns/serving_flows/single_deployment/main_2.py:slow_flow",
     ).serve(
         name="parallel-deployment-2",
         # cron="0/5 * * * *",
         tags=["testing", "tutorial","deployment2"],
         description="This is an example deployment flow of a parrallel task execution flow.",
         version="tutorial/deployments",
-        parameters={"sleep": 5}
+        parameters={"sleep": 5,"name": "world"}
     ).deploy(
         name="no-image-deployment",
         work_pool_name="wp-local-subprocess-2",
