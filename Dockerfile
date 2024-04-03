@@ -1,4 +1,5 @@
 FROM prefecthq/prefect:2.14.10-python3.10
+# prefecthq/prefect:2.16.4-python3.11
 
 RUN apt update && \
     pip install --upgrade pip && \
