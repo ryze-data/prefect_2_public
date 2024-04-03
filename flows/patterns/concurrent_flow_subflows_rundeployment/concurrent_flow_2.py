@@ -22,7 +22,7 @@ def concurrent_flow_2(name="world"):
 if __name__ == "__main__":
     concurrent_flow_2.from_source(
         "https://github.com/ryze-data/prefect_2_public.git",
-        entrypoint="flows/patterns/serving_flows/single_deployment/main.py:concurrent_flow_2",
+        entrypoint="flows/patterns/serving_flows/single_deployment/concurrent_flow_2.py:concurrent_flow_2",
     ).serve(
         name="concurrent-deployment-2",
         # cron="0/5 * * * *",

@@ -26,11 +26,10 @@ deployments:
   tags: ["sandbox"]
   description: "Sample running parallel flows"
   schedule: {"name": "world"}
-  flow_name: flow-of-deployments
-  entrypoint: flows/patterns/serving_flows/single_deployment/main.py:flow_of_deployments
+  entrypoint: ./flows/patterns/serving_flows/single_deployment/main.py:flow_of_deployments
   parameters: {}
   work_pool:
-    name: wp-local-subprocess
+    name: wp-local-process
     work_queue_name: default
     job_variables: {}
 - name: concurrent_flow_1
@@ -38,11 +37,10 @@ deployments:
   tags: ["sandbox"]
   description: "Sample parallel flow"
   schedule: {"sleep": 5,"name": "world"}
-  flow_name: concurrent-deployment-1
-  entrypoint: flows/patterns/serving_flows/single_deployment/main_2.py:slow_flow
+  entrypoint: ./flows/patterns/serving_flows/single_deployment/main_2.py:slow_flow
   parameters: {}
   work_pool:
-    name: wp-local-subprocess
+    name: wp-local-process
     work_queue_name: default
     job_variables: {}
 - name: concurrent_flow_2
@@ -50,11 +48,10 @@ deployments:
   tags: ["sandbox"]
   description: "Sample parallel flow"
   schedule: {"name": "world"}
-  flow_name: concurrent-deployment-2
-  entrypoint: flows/patterns/serving_flows/single_deployment/main.py:concurrent_flow_2
+  entrypoint: ./flows/patterns/serving_flows/single_deployment/main.py:concurrent_flow_2
   parameters: {}
   work_pool:
-    name: wp-local-subprocess
+    name: wp-local-process
     work_queue_name: default
     job_variables: {}
 - name: null
