@@ -1,5 +1,5 @@
 import time
-from prefect import flow, serve
+from prefect import flow, serve, deploy, task
 
 @task(name="Print Hello")
 def print_hello(name):
