@@ -10,7 +10,7 @@ def print_hello(name):
     return msg
 
 @flow
-def concurrent_flow_1(sleep: int = 60, name: str ="world"):
+def flow_1(sleep: int = 60, name: str ="world"):
     "Sleepy flow - sleeps the provided amount of time (in seconds)."
     time.sleep(sleep)
     message = print_hello.submit(name="Task 1 concurrent")
@@ -26,4 +26,4 @@ def fast_flow(name:str ="world"):
     return
 
 if __name__ == "__main__":
-    concurrent_flow_1(sleep = 5, name="world")
+    flow_1(sleep = 5, name="world")

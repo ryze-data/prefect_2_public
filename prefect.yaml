@@ -32,23 +32,23 @@ deployments:
     name: wp-local-process
     work_queue_name: default
     job_variables: {}
-- name: concurrent_flow_1
+- name: concurrent_flow_1_deployment
   version: 0.1.0
   tags: ["sandbox"]
   description: "Sample parallel flow"
   schedule: {"sleep": 5,"name": "world"}
-  entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_1.py:concurrent_flow_1
+  entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_1.py:flow_1
   parameters: {}
   work_pool:
     name: wp-local-process
     work_queue_name: default
     job_variables: {}
-- name: concurrent_flow_2
+- name: concurrent_flow_2_deployment
   version: 0.1.0
   tags: ["sandbox"]
   description: "Sample parallel flow"
   schedule: {"name": "world"}
-  entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_2.py:concurrent_flow_2
+  entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_2.py:flow_2
   parameters: {}
   work_pool:
     name: wp-local-process

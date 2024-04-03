@@ -13,11 +13,11 @@ def print_hello(name):
 
 
 @flow()
-def concurrent_flow_2(name="world"):
+def flow_2(name="world"):
     
     message = print_hello.submit(name="Task 1 concurrent")
     message_2 = print_hello.submit(name="Task 2 concurrent")
     message_3 = print_hello(name="Task 3 concurrent", wait_for=[message, message_2])
 
 if __name__ == "__main__":
-    concurrent_flow_2(name="world")
+    flow_2(name="world")
