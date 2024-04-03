@@ -25,11 +25,18 @@ def hello_world(name="world"):
 
 
 if __name__ == "__main__":
-    hello_world.serve(
+    hello_world.from_source(
+        "https://github.com/ryze-data/prefect_2_public.git",
+        entrypoint="flows/patterns/serving_flows/single_deployment/main.py.py:hello_world",
+    ).serve(
         name="my-first-deployment",
-        cron="0/5 * * * *",
+        # cron="0/5 * * * *",
         tags=["testing", "tutorial"],
         description="Given a GitHub repository, logs repository statistics for that repo.",
         version="tutorial/deployments",
         parameters={"name": "world"}
+    ).deploy(
+        name="no-image-deployment",
+        work_pool_name="wp-local-subprocess",
+        build=False
     )
