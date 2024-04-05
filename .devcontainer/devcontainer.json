@@ -1,4 +1,4 @@
-// DO SWITCH THE [insert_HOME_path] with the home path.
+// DO SWITCH THE /mnt/c/Users/mjeffs with the home path.
 {
 	"name": "Prefect 2 Dev Container",
 	// if using image. I learned that you cannot use a docker base image with a devcontainer
@@ -13,11 +13,11 @@
 	// "features": {},
 
 	"mounts": [
-		"source=[insert_HOME_path]/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
-		"source=[insert_HOME_path]/.prefect,target=/home/vscode/.prefect,type=bind,consistency=cached",
-		"source=[insert_HOME_path]/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
-		"source=[insert_HOME_path]/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
-		// "source=${localWorkspaceFolder}/app-data,target=/data,type=bind,consistency=cached"
+		"source=/mnt/c/Users/mjeffs/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
+		"source=/mnt/c/Users/mjeffs/.prefect,target=/home/vscode/.prefect,type=bind,consistency=cached",
+		"source=/mnt/c/Users/mjeffs/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=/mnt/c/Users/mjeffs/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
+
 	],
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
