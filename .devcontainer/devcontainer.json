@@ -1,4 +1,4 @@
-// DO SWITCH THE /mnt/c/Users/mjeffs with the home path.
+// DO SWITCH THE [wsl or mac os x path here] with the home path.
 {
 	"name": "Prefect 2 Dev Container",
 	// if using image. I learned that you cannot use a docker base image with a devcontainer
@@ -13,10 +13,7 @@
 	// "features": {},
 
 	"mounts": [
-		"source=/mnt/c/Users/mjeffs/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
-		"source=/mnt/c/Users/mjeffs/.prefect,target=/home/vscode/.prefect,type=bind,consistency=cached",
-		"source=/mnt/c/Users/mjeffs/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
-		"source=/mnt/c/Users/mjeffs/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
+		"source=[wsl or mac os x path here]/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached"
 
 	],
 	

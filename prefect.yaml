@@ -36,9 +36,9 @@ deployments:
   version: 0.1.0
   tags: ["sandbox"]
   description: "Sample parallel flow"
-  schedule: {"sleep": 5,"name": "world"}
+  schedule: {}
   entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_1.py:flow_1
-  parameters: {}
+  parameters: {"sleep": 5,"name": "world"}
   work_pool:
     name: wp-local-process
     work_queue_name: default
@@ -47,9 +47,9 @@ deployments:
   version: 0.1.0
   tags: ["sandbox"]
   description: "Sample parallel flow"
-  schedule: {"name": "world"}
+  schedule: {}
   entrypoint: ./flows/patterns/concurrent_flow_subflows_rundeployment/concurrent_flow_2.py:flow_2
-  parameters: {}
+  parameters: {"name": "world"}
   work_pool:
     name: wp-local-process
     work_queue_name: default
