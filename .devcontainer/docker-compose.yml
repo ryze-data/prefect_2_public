@@ -28,6 +28,12 @@ services:
       LC_ALL: 'C.UTF-8'
       LC_COLLATE: 'C.UTF-8'
       LC_CTYPE: 'C.UTF-8'
+    # healthcheck:
+    #   interval: 10s
+    #   retries: 60
+    #   start_period: 2s
+    #   test: pg_isready -q -d $${POSTGRES_DB} -U $${POSTGRES_USER} | grep "accepting connections" || exit 1
+    #   timeout: 2s
     tmpfs: /var/lib/postgresql/data
 
 volumes:
