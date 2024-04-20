@@ -1,23 +1,34 @@
-version: '1.0'
+version: '3.8'
 services:
   prefectdevcontainer:
     build: 
       context: .
       dockerfile: Dockerfile
+    environment:
+      PREFECT_SERVER_DATABASE_CONNECTION_URL: ${DB_CONNECTION_URL}
+      PREFECT_SERVER_ANALYTICS_ENABLED: "false"
+      PREFECT_LOGGING_SERVER_LEVEL: WARNING
+      PREFECT_API_URL: ${PREFECT_API_URL}
     volumes:
       - ../..:/workspaces:cached      
-    # network_mode: service:db
+    network_mode: service:db
     command: /bin/sh -c "while sleep 1000; do :; done"
 
-#   db:
-#     image: postgres:latest
-#     restart: unless-stopped
-#     volumes:
-#       - postgres-data:/var/lib/postgresql/data
-#     environment:
-#       POSTGRES_PASSWORD: postgres
-#       POSTGRES_USER: postgres
-#       POSTGRES_DB: postgres
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      LANG: 'C.UTF-8'
+      LANGUAGE: 'C.UTF-8'
+      LC_ALL: 'C.UTF-8'
+      LC_COLLATE: 'C.UTF-8'
+      LC_CTYPE: 'C.UTF-8'
+    tmpfs: /var/lib/postgresql/data
 
-# volumes:
-#   postgres-data:
+volumes:
+  postgres-data:

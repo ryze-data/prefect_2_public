@@ -1,27 +1,24 @@
-// DO SWITCH THE [wsl or mac os x path here] with the home path.
+// DO BEFORE RUNNING ENV: switch wsl_path_or_mac_os_x_path_here with the correct path before you build
 {
 	"name": "Prefect 2 Dev Container",
-	// if using image. I learned that you cannot use a docker base image with a devcontainer
-	// "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
-    // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
     "dockerComposeFile": "docker-compose.yml",
+	// "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
     "service": "prefectdevcontainer",
 	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}",
-
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
+	// Mounts are used to bind local system folders required for dev container
 	// "mounts": [
-	// 	"source=[wsl or mac os x path here]/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
-	//  "source=[wsl or mac os x path here]/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached"
-
+	//  "source=[wsl_path_or_mac_os_x_path_here]/.prefect,target=/home/vscode/.prefect,type=bind,consistency=cached"
 	// ],
 	
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [4200],
+
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "uname -r && cat /etc/lsb-release && prefect version && dbt --version",
+	"postCreateCommand": "uname -r && cat /etc/lsb-release && prefect version",
 	// Configure tool-specific properties.
 	// "customizations": {},
 
