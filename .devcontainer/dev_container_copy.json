@@ -1,0 +1,103 @@
+{
+	"name": "Ubuntu Data Engineering",
+	"image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+	"mounts": [
+		"source=${localEnv:PWD}/.dbt,target=/home/vscode/.dbt,type=bind,consistency=cached",
+		"source=${localEnv:PWD}/.prefect,target=/home/vscode/.prefect,type=bind,consistency=cached",
+		"source=${localEnv:PWD}/.ssh,target=/home/vscode/.ssh,type=bind,consistency=cached",
+		"source=${localEnv:PWD}/.aws,target=/home/vscode/.aws,type=bind,consistency=cached"
+		// 	// "source=${localWorkspaceFolder}/app-data,target=/data,type=bind,consistency=cached"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [
+		"8080:18080",
+		"4200:14200"
+	],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bash ./.devcontainer/postCreateCommand.sh",
+	// 'python3 -m pip install --upgrade jsonschema' command was added as the environment had issues with deploying things.
+	// NOTE I got an error on installation but prefect commands started working see line below for error
+	/// ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts. hologram 0.0.15 requires jsonschema<4.0,>=3.0, but you have jsonschema 4.21.1 which is incompatible.
+	// This erroor for hologram is what dbt-core 1.3.0 which needs to be upgraded to fix this issue.
+	// "postCreateCommand": "sudo apt-get update && sudo apt-get install --no-install-recommends -y python3-pip && pip3 install -r /home/vscode/.prefect/requirements_20240403.txt && sudo apt-get clean && sudo rm -rf /var/lib/apt/lists/*",
+	// python3 -m pip install prefect-shell prefect-github prefect-dbt prefect-dask dbt-core dbt-snowflake prefect-snowflake
+	// Configure tool-specific properties. i.e. choose python interpreter, vscode extensions
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+
+				// Python
+				"python.defaultInterpreterPath": "/usr/bin/python3.11",
+				"python.testing.unittestEnabled": false,
+				"python.testing.pytestEnabled": true,
+				"python.experiments.enabled": false,
+				"[python]": {
+					"editor.defaultFormatter": "charliermarsh.ruff",
+					"editor.formatOnSave": true,
+					"editor.formatOnSaveMode": "modifications",
+					"editor.codeActionsOnSave": {
+						"source.organizeImports": "explicit"
+					}
+				},
+				
+				// Python Formatter: Ruff
+				"ruff.format.args": [],
+				"ruff.lint.args": [],
+
+				// SQL Formatter: SQLFluff
+				"[sql]": {
+					"editor.defaultFormatter": "dorzey.vscode-sqlfluff",
+					"editor.formatOnSave": true,
+					"editor.formatOnSaveMode": "modifications"
+				},
+
+				// Linter: SQLFluff
+				"sqlfluff.config": "${workspaceFolder}/pfs-data-engineering/pfs-dbt/dbt_projects/dbt_transforms/transforms.sqlfluff ",
+				"sqlfluff.linter.run": "onSave",
+				"sqlfluff.enabled": true,
+				"sqlfluff.formatting.run": "onSave",
+				"sqlfluff.formatting.enabled": true,
+				"sqlfluff.dialect": "snowflake",
+				"sqlfluff.format.arguments": [],
+				"sqlfluff.experimental.format.executeInTerminal": false
+			},
+			// https://marketplace.visualstudio.com/items?itemName=
+			"extensions": [
+				// # Recommended Extensions
+				// ## productivity, linting, formatting
+				"ms-python.python", // python
+				"charliermarsh.ruff", // python formatter
+				"dorzey.vscode-sqlfluff", // sql formatter
+				"innoverio.vscode-dbt-power-user", // dbt help
+				"tamasfe.even-better-toml", // toml formatter
+				
+				// # Optional Extensions
+				"GitHub.copilot-chat", // ai assistant
+				"AmazonWebServices.aws-toolkit-vscode", // aws
+				"hediet.vscode-drawio", // visualizer
+				"eamodio.gitlens", // github
+				"mhutchie.git-graph", // git graph
+				// "GitHub.vscode-github-actions", // github actions
+				// "ms-python.black-formatter", // python formatter
+				// "ms-python.pylint", // python linter
+				// "ms-python.isort", // python library formatter
+				// "ms-python.mypy-type-checker", // python type checker
+				// "mongodb.mongodb-vscode", mongo
+				// "snowflake.snowflake-vsc", snowflake
+				"johnpapa.vscode-peacock", // color themes
+				"robertz.code-snapshot", // code snapshot
+				// "ms-azuretools.vscode-docker", // docker
+				// "hashicorp.terraform", // iac
+				"JannisX11.batch-rename-extension" // renaming files in bulk
+				// "redhat.vscode-yaml" // formatting yaml
+				// "samuelcolvin.jinjahtml" // jinja
+			]
+		}
+	},
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	"remoteUser": "vscode" // "root"
+}
